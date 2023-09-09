@@ -9,7 +9,8 @@ export class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      curcat: 'Товары всех категорий',
+      curcat: 0,
+      curstate: 'allGenders',
       sex: '',
       itemsCat: [
         {
@@ -261,53 +262,36 @@ export class App extends Component {
         },
       ],
     }
-    this.catuse = this.catuse.bind(this)
-    this.floor = this.floor.bind(this)
+    this.allCheck = this.allCheck.bind(this)
   }
   render() {
     return (
       <div className='text-blue-400'>
-        <Header catuse={this.catuse} floor={this.floor} curcat={this.state.curcat}/>
-        <Nav itemsCat={this.state.itemsCat} curcat={this.state.curcat} catuse={this.catuse} items={this.state.items} categories={this.state.categories}/>
+        <Header curcat={this.state.curcat}/>
+        <Nav itemsCat={this.state.itemsCat} allCheck={this.allCheck} items={this.state.items} categories={this.state.categories}/>
         <Main items = {this.state.items}/>
       </div>
     )
   }
 
-  catuse(cat) {
-    this.setState({sex: ''})
-    console.log(this.state.sex)
-    this.setState({items: this.state.itemsCat})
-    if (cat === ''){
-      this.setState({itemsCat: this.state.itemsAll})
-      this.setState({items: this.state.itemsAll})
-      this.setState({curcat: `Товары всех категорий`})
+  allCheck(cat, state) {
+    let result = []
+    this.setState({curcat: cat})
+    this.setState({curstate: state})
+    if (cat === 'allC'){
+      result = this.state.itemsAll
     } else {
-      this.setState({curcat: `Товары категории "${cat}"`})
-      this.setState({items: [...this.state.itemsAll.filter(el => (
+      result = this.state.itemsAll.filter(el => (
         el.category === cat
-      ))]})
-      this.setState({itemsCat: [...this.state.itemsAll.filter(el => (
-        el.category === cat
-      ))]})
+      ))
     }
-    this.floor(this.state.sex)
-  }
-
-  floor(sex){
-    console.log(this.state.sex)
-    if(sex === ''){
-      return
-    }
-    if(sex === 'reset'){
-      this.setState({items: this.state.itemsCat})
+    if (state === 'allG'){
+      this.setState({items: result})
     } else {
-      this.setState({items: this.state.itemsCat.filter(el => (
-        el.sex === sex
+      this.setState({items: result.filter(el => (
+        el.sex === state
       ))})
     }
-    console.log(sex)
   }
-
 }
 export default App

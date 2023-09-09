@@ -15,7 +15,7 @@ export default function Item(props) {
     <div className='justify-between flex flex-col pb-2 m-2 w-[22%] border-2 border-gray rounded-t-[10px] hover:border-black transition-all'>
         <div>
           <p></p>
-          <img onClick={() => info()} className='w-full h-40 rounded-t-[10px]' src={`./img/${props.item.img}`}></img>
+          <img onClick={() => info()} className='w-full h-40 rounded-t-[10px]' src={`https://jaaja321.github.io/fig/img/${props.item.img}`}></img>
           <p onClick={() => info()} className='mx-2'>{props.item.desc}</p>
         </div>
         <div className='mt-2 px-2 w-full inline-flex justify-between'>
