@@ -3,12 +3,9 @@ import { MdOutlineSportsSoccer } from 'react-icons/md'
 
 export class Category extends Component {
   render() {
+    let Ico = <MdOutlineSportsSoccer />
     return (
-      <div>
-        <div>
-            
-        </div>
-      </div>
+        <li className='font-bold'>{Ico}{this.props.el.name}</li>
     )
   }
 }
