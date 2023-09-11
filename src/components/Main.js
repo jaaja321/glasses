@@ -6,7 +6,7 @@ export class Main extends Component {
     return (
       <main className='ml-[20%] mt-[10vh] mr-[0.2%] flex flex-wrap justify-between'>
         {this.props.items.map(el => (
-            <Item item = {el}/>
+            <Item item = {el} search={this.props.search} addItem={this.props.addItem}/>
         ))}
       </main>
     )

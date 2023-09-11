@@ -31,10 +31,11 @@ export class Nav extends Component {
   }
 
   catCheck(cat){
-    console.log(cat,this.state.curcat)
+    console.log(cat,this.state.curstate)
     if (cat === this.state.curcat){
       this.setState({curcat: "allC"})
       this.allCheck("allC", this.state.curstate)
+      return
     } else {
       this.setState({curcat: cat})
     }
@@ -42,6 +43,8 @@ export class Nav extends Component {
   }
 
   allCheck(cat, state){
+    this.setState({curstate: state})
+    this.setState({curcat: cat})
     console.log(cat, state)
     this.props.allCheck(cat, state)
   }
@@ -50,19 +53,19 @@ export class Nav extends Component {
     return (
       <nav className='fixed flex flex-col left-0 top-0 h-full w-[20%] bg-white border-r border-black'>
         <div className='flex mt-2 mb-[-4px]'>
-            <div onClick={() => this.catCheck('allC')} className='mx-2 p-4 border border-black rounded-lg hover:bg-gray-800 transition-all'><HiMenu className='scale-[2]'/></div>
+            <div onClick={() => this.allCheck('allC', 'allG')} className='mx-2 p-4 border border-black rounded-lg hover:bg-gray-800 transition-all'><HiMenu className='scale-[2]'/></div>
             <p className='my-auto font-bold'>LuxOchki</p>
         </div>
-        <div className='flex justify-center mt-2'>
-          <div onClick={() => this.stateCheck('Мужские')} className={`p-4 mx-1 border border-black rounded-lg ${this.state.curstate === 'Мужские' && 'bg-gray-700'} hover:bg-gray-800 transition-all`}><FaMale className='scale-[2]'/></div>
-          <div onClick={() => this.stateCheck('Женские')} className={`p-4 mx-1 border border-black rounded-lg ${this.state.curstate === 'Женские' && 'bg-gray-700'} hover:bg-gray-800 transition-all`}><FaFemale className='scale-[2]'/></div>
+        <div className='flex justify-around mt-4'>
+          <div onClick={() => this.stateCheck('Мужские')} className={`w-[25%] p-4 mx-2 border border-black rounded-lg ${this.state.curstate === 'Мужские' && 'bg-gray-700'} hover:bg-gray-800 transition-all`}><FaMale className='scale-[2] mx-auto'/></div>
+          <div onClick={() => this.stateCheck('Женские')} className={`w-[25%] p-4 mx-2 border border-black rounded-lg ${this.state.curstate === 'Женские' && 'bg-gray-700'} hover:bg-gray-800 transition-all`}><FaFemale className='scale-[2] mx-auto'/></div>
         </div>
         <div className='m-2'>
           <ul className='flex flex-col w-[100%] rounded-lg'>
-            <li onClick={() => this.catCheck('Спортивные')} className='my-1 pl-4 py-4 flex font-bold border border-black rounded-lg hover:bg-gray-800 transition-all'><MdOutlineSportsSoccer className='mr-3 scale-[2] my-auto'/>Спорт</li>
-            <li onClick={() => this.catCheck('Для чтения')} className='my-1 pl-4 py-4 flex font-bold border border-black rounded-lg hover:bg-gray-800 transition-all'><GiOpenBook className='mr-3 scale-[2] my-auto'/>Чтение</li>
-            <li onClick={() => this.catCheck('Детские')} className='my-1 pl-4 py-4 flex font-bold border border-black rounded-lg hover:bg-gray-800 transition-all'><PiBabyBold className='mr-3 scale-[2] my-auto'/>Детские</li>
-            <li onClick={() => this.catCheck('Солнцезащитные')} className={`my-1 pl-4 py-4 flex font-bold border border-black rounded-lg hover:bg-gray-800 transition-all`}><HiSun className='mr-3 scale-[2] my-auto'/>Cолнцезащитные</li>
+            <li onClick={() => this.catCheck('Спортивные')} className={`my-1 pl-4 py-4 flex font-bold border border-black rounded-lg ${this.state.curcat === 'Спортивные' && 'bg-gray-700'} hover:bg-gray-800 transition-all`}><MdOutlineSportsSoccer className='mr-3 scale-[2] my-auto'/>Спорт</li>
+            <li onClick={() => this.catCheck('Для чтения')} className={`my-1 pl-4 py-4 flex font-bold border border-black rounded-lg ${this.state.curcat === 'Для чтения' && 'bg-gray-700'} hover:bg-gray-800 transition-all`}><GiOpenBook className='mr-3 scale-[2] my-auto'/>Чтение</li>
+            <li onClick={() => this.catCheck('Детские')} className={`my-1 pl-4 py-4 flex font-bold border border-black rounded-lg ${this.state.curcat === 'Детские' && 'bg-gray-700'} hover:bg-gray-800 transition-all`}><PiBabyBold className='mr-3 scale-[2] my-auto'/>Детские</li>
+            <li onClick={() => this.catCheck('Солнцезащитные')} className={`my-1 pl-4 py-4 flex font-bold border border-black rounded-lg ${this.state.curcat === 'Солнцезащитные' && 'bg-gray-700'} hover:bg-gray-800 transition-all`}><HiSun className='mr-3 scale-[2] my-auto'/>Cолнцезащитные</li>
           </ul>
         </div>
       </nav>

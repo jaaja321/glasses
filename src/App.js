@@ -9,8 +9,8 @@ export class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      curcat: 0,
-      curstate: 'allGenders',
+      curcat: 'allC',
+      curstate: 'allG',
       sex: '',
       itemsCat: [
         {
@@ -261,15 +261,20 @@ export class App extends Component {
           sex: "Женские",
         },
       ],
+      curitems: [],
+      search: ''
     }
     this.allCheck = this.allCheck.bind(this)
+    this.search = this.search.bind(this)
+    this.addItem = this.addItem.bind(this)
+    this.delitem = this.delitem.bind(this)
   }
   render() {
     return (
       <div className='text-blue-400'>
-        <Header curcat={this.state.curcat}/>
+        <Header delitem={this.delitem} curitems={this.state.curitems} search={this.search} curstate={this.state.curstate} curcat={this.state.curcat}/>
         <Nav itemsCat={this.state.itemsCat} allCheck={this.allCheck} items={this.state.items} categories={this.state.categories}/>
-        <Main items = {this.state.items}/>
+        <Main addItem={this.addItem} items = {this.state.items} search={this.state.search}/>
       </div>
     )
   }
@@ -286,12 +291,43 @@ export class App extends Component {
       ))
     }
     if (state === 'allG'){
-      this.setState({items: result})
+      result = this.state.itemsAll
     } else {
-      this.setState({items: result.filter(el => (
+      result = result.filter(el => (
         el.sex === state
-      ))})
+      ))
     }
+    this.setState({items: result})
+    this.setState({itemsCat: result})
   }
+
+  search(text){
+    if (text){
+      console.log(text)
+      this.setState({items: this.state.itemsCat.filter(el => (
+        el.desc.toLowerCase().indexOf(text) !== -1 || el.price.indexOf(text) !== -1
+      ))})
+      console.log(this.state.items.filter(el => (
+        el.desc.toLowerCase().indexOf(text) !== -1
+      )))
+    } else {
+      this.setState({items: this.state.itemsCat})
+    }
+    this.setState({search: text})
+  }
+
+  addItem(item){
+    let arr = [...this.state.curitems, item]
+    this.setState({curitems: [...this.state.curitems, item]})
+    console.log(arr)
+  }
+
+  delitem(item){
+    let arr = [...this.state.curitems.filter(el => (
+      el.id !== item.id
+    ))]
+    this.setState({curitems: arr})
+  }
+
 }
 export default App

@@ -8,9 +8,17 @@ import { PiBabyBold } from 'react-icons/pi'
 
 export default function Item(props) {
     let [show, setShow] = useState(false)
+    let [select, setSelect] = useState(false)
+    
     const info = () => {
         setShow(!show)
     }
+
+    const addItem = () => {
+      props.addItem(props.item)
+      console.log(props.item)
+    }
+
   return (
     <div className='justify-between flex flex-col pb-2 m-2 w-[22%] border-2 border-gray rounded-t-[10px] hover:border-black transition-all'>
         <div>
@@ -22,7 +30,7 @@ export default function Item(props) {
         <div onClick={() => info()} className='p-4 border border-black rounded-lg hover:bg-gray-800 transition-all'><AiOutlineInfo className='scale-150'/></div>
             <p className='my-auto font-bold'>{props.item.price}$</p>
             <div className='flex'>
-              <div className='p-4 ml-2 border border-black rounded-lg hover:bg-gray-800 transition-all'><RiShoppingBasket2Fill className='scale-150'/></div>
+              <div onClick={() => addItem()} className='p-4 ml-2 border border-black rounded-lg hover:bg-gray-800 transition-all'><RiShoppingBasket2Fill className='scale-150'/></div>
             </div>
         </div>
         {show ? <Info item={props.item} show={show} info={info}/> : null}
