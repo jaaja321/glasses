@@ -274,28 +274,29 @@ export class App extends Component {
       <div className='text-blue-400'>
         <Header delitem={this.delitem} curitems={this.state.curitems} search={this.search} curstate={this.state.curstate} curcat={this.state.curcat}/>
         <Nav itemsCat={this.state.itemsCat} allCheck={this.allCheck} items={this.state.items} categories={this.state.categories}/>
-        <Main addItem={this.addItem} items = {this.state.items} search={this.state.search}/>
+        <Main curitems={this.state.curitems} addItem={this.addItem} items = {this.state.items} search={this.state.search}/>
       </div>
     )
   }
 
   allCheck(cat, state) {
-    let result = []
+    let result = this.state.itemsAll
     this.setState({curcat: cat})
     this.setState({curstate: state})
     if (cat === 'allC'){
       result = this.state.itemsAll
     } else {
+      console.log(90)
       result = this.state.itemsAll.filter(el => (
         el.category === cat
       ))
     }
-    if (state === 'allG'){
-      result = this.state.itemsAll
-    } else {
+    if (state !== 'allG'){
       result = result.filter(el => (
         el.sex === state
       ))
+    } else {
+      result = result
     }
     this.setState({items: result})
     this.setState({itemsCat: result})

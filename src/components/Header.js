@@ -47,12 +47,12 @@ export default function Header(props) {
   }
 
   return (
-    <div className={`z-11`}>
-      <div className={`z-20 w-[80%] fixed right-0 top-[-100%] h-auto bg-white ${cartshow && 'top-[10%]'} transition-all`}>
-        <div onClick={() => cartpress()} className='absolute right-2 top-2 z-99 p-2 border border-black rounded-lg hover:bg-gray-800 transition-all'><IoMdClose className='scale-[2]'/></div>
+    <div className={``}>
+      <div className={`z-11 w-[80%] fixed right-0 top-[-100%] h-auto bg-white ${cartshow && 'top-[10%]'} transition-all`}>
+        <div onClick={() => cartpress()} className='absolute right-2 top-2 p-2 border border-black rounded-lg hover:bg-gray-800 transition-all'><IoMdClose className='scale-[2]'/></div>
           <Cart curitems={props.curitems} delitem={props.delitem} className={`flex flex-wrap mx-12 bg-white`}/>
       </div>
-    <div className='z-30 fixed right-0 top-0 w-[80%] h-[10%] bg-white flex justify-between border-b border-black'>
+    <div className='z-10 fixed right-0 top-0 w-[80%] h-[10%] bg-white flex justify-between border-b border-black'>
       <p onClick={() => cartpress()} className={`p-2 ml-4 my-auto font-bold flex border border-black rounded-lg hover:bg-gray-800 transition-all`}><RiShoppingBasket2Fill className='my-auto mr-2 mx-1 scale-[2]'/>Корзина</p>
       <p className='text-center m-auto font-bold'>{head()}</p>
         <div className='flex my-auto'>

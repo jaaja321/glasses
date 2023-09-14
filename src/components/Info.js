@@ -4,7 +4,7 @@ import { RiShoppingBasket2Fill } from 'react-icons/ri'
 
 export default function Info(props) {
   return (
-    <div className='z-10 px-2 left-[5%] top-[5%] w-[90%] border border-black bg-white fixed'>
+    <div className='px-2 left-0 top-0 h-full w-full border border-black bg-white fixed'>
         <div className='py-2 flex'>
         <img className='w-[60%] h-[80vh]' src={`https://jaaja321.github.io/fig/img/${props.item.img}`}></img>
         <div className='flex flex-col justify-center'>

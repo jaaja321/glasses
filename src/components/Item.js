@@ -9,7 +9,7 @@ import { PiBabyBold } from 'react-icons/pi'
 export default function Item(props) {
     let [show, setShow] = useState(false)
     let [select, setSelect] = useState(false)
-    
+    let url = '1.png'
     const info = () => {
         setShow(!show)
     }
@@ -20,7 +20,7 @@ export default function Item(props) {
     }
 
   return (
-    <div className='justify-between flex flex-col pb-2 m-2 w-[22%] border-2 border-gray rounded-t-[10px] hover:border-black transition-all'>
+    <div className='justify-between flex flex-col pb-2 mt-2 border-2 border-gray rounded-t-[10px] hover:border-black transition-all'>
         <div>
           <p></p>
           <img onClick={() => info()} className='w-full h-40 rounded-t-[10px]' src={`https://jaaja321.github.io/fig/img/${props.item.img}`}></img>
@@ -30,7 +30,7 @@ export default function Item(props) {
         <div onClick={() => info()} className='p-4 border border-black rounded-lg hover:bg-gray-800 transition-all'><AiOutlineInfo className='scale-150'/></div>
             <p className='my-auto font-bold'>{props.item.price}$</p>
             <div className='flex'>
-              <div onClick={() => addItem()} className='p-4 ml-2 border border-black rounded-lg hover:bg-gray-800 transition-all'><RiShoppingBasket2Fill className='scale-150'/></div>
+              <div onClick={() => addItem()} className='p-4 ml-2 border border-black rounded-lg hover:bg-gray-800 transition-all'><img src={`https://jaaja321.github.io/fig/img/${url}`}></img></div>
             </div>
         </div>
         {show ? <Info item={props.item} show={show} info={info}/> : null}
