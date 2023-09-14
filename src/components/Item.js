@@ -9,7 +9,7 @@ import { PiBabyBold } from 'react-icons/pi'
 export default function Item(props) {
     let [show, setShow] = useState(false)
     let [select, setSelect] = useState(false)
-    let url = '1.png'
+    let url = 'ball.svg'
     const info = () => {
         setShow(!show)
     }
