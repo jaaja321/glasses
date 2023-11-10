@@ -3,7 +3,7 @@ import Cart from './Cart'
 import { BiSearch } from 'react-icons/bi'
 import { FaMale , FaFemale } from 'react-icons/fa'
 import {RiShoppingBasket2Fill} from 'react-icons/ri'
-import {IoMdClose} from 'react-icons/io'
+import {HiArrowUp} from 'react-icons/hi'
 
 export default function Header(props) {
 
@@ -47,21 +47,20 @@ export default function Header(props) {
   }
 
   return (
-    <div className={``}>
-      <div className={`z-11 w-[80%] fixed right-0 top-[-100%] h-auto bg-white ${cartshow && 'top-[10%]'} transition-all`}>
-        <div onClick={() => cartpress()} className='absolute right-2 top-2 p-2 border border-black rounded-lg hover:bg-gray-800 transition-all'><IoMdClose className='scale-[2]'/></div>
-          <Cart curitems={props.curitems} delitem={props.delitem} className={`flex flex-wrap mx-12 bg-white`}/>
+    <div className={`fixed z-[1001] ${cartshow && 'top-[-10%]'}`}>
+      <div className={`z-[100000] ${props.open ? 'lg:w-[80%] md:w-[80%] md:left-[20%] lg:left-[20%] left-[15%]' : 'lg:w-[94%] md:w-[90%] lg:left-[6%] md:left-[10%] left-[0%] w-screen'} fixed right-0 top-[-100%] w-[80%] opacity-0 bg-white ${cartshow && 'top-[0%] opacity-100'} transition-all`}>
+        <div onClick={() => cartpress()} className='absolute left-[1%] top-[1%] p-4 border border-black rounded-lg hover:bg-gray-800 transition-all' id='but-h'><HiArrowUp className='scale-[2]'/></div>
+          <Cart addItem={props.addItem} curitems={props.curitems} delitem={props.delitem} className={`z-[70] mx-12 bg-white`}/>
       </div>
-    <div className='z-10 fixed right-0 top-0 w-[80%] h-[10%] bg-white flex justify-between border-b border-black'>
-      <p onClick={() => cartpress()} className={`p-2 ml-4 my-auto font-bold flex border border-black rounded-lg hover:bg-gray-800 transition-all`}><RiShoppingBasket2Fill className='my-auto mr-2 mx-1 scale-[2]'/>Корзина</p>
-      <p className='text-center m-auto font-bold'>{head()}</p>
-        <div className='flex my-auto'>
-          <input onChange={(e) => type(e.target.value)} value={text} className='rounded-lg border-2 my-auto border-gray-300 h-10' id='input'></input>
-          <div onClick={() => search()}
-          className='flex my-auto items-center mx-2 p-2 rounded-lg border border-black hover:bg-gray-800 transition-all'>
-            <p className='my-auto font-bold'>Поиск</p>
-            <div className='px-2'><BiSearch className='ml-2 scale-[2]'/></div>
-        </div>
+    <div className={`z-10 fixed top-0 ${props.open ? 'lg:w-[80%] md:w-[80%] lg:left-[20%] md:left-[20%] left-[100%]' : 'lg:w-[94%] md:w-[90%] lg:left-[6%] md:left-[10%] left-[15%]'} h-[10vh] bg-white right-0 flex justify-between border-b border-black ${cartshow && 'top-[-10%]'} transition-all`} id='header'>
+      <div onClick={() => cartpress()} className={`p-3 ml-4 my-auto font-bold flex border border-black rounded-lg hover:bg-gray-800 transition-all`} id='but-h'>
+        <RiShoppingBasket2Fill className='my-auto mr-2 mx-1 scale-[2]'/>
+        <span className={`opacity-0 w-0 lg:opacity-100 lg:w-full`}>Корзина</span>
+        <p className='font-bold relative'>({props.curitems.length})</p>
+      </div>
+      <p onClick={() => props.setOpen()} className={`text-center m-auto font-bold sm:opacity-100 sm:w-full opacity-0 w-0`}>{head()}</p>
+        <div className='mr-[1%] my-auto w-[40%] flex'>
+          <input onChange={(e) => type(e.target.value)} value={text} className='rounded-lg border-2 ml-[50%] w-[80%] border-gray-300 md:h-[6vh] xl:h-[7vh]' placeholder='Поиск' id='input'></input>
       </div>
     </div>
     </div>

@@ -9,19 +9,24 @@ function CartItem(props) {
 
     const info = () => {
         setShow(!show)
+        if (!show) {
+            document.body.style.overflow = "hidden"
+        } else {
+            document.body.style.overflow = "auto"
+        }
     }
     
   return (
-    <div className='flex justify-center border border-gray rounded-[10px] hover:border-black transition-all'>
-        {show ? <Info item={props.item} show={show} info={info}/> : null}
-        <img className='my-auto h-20 rounded-l-[10px]' src={`https://jaaja321.github.io/fig/img/${props.item.img}`}></img>
-        <div className='m-auto flex flex-col text-center'>
-            <p>{props.item.title}</p>
-            <p className='mx-auto'>{props.item.price}$</p>
+    <div className='w-[100%] m-1 flex justify-center border border-gray rounded-[10px] hover:border-black transition-all'>
+        {show ? <Info className='z-[99]' item={props.item} show={show} info={info} addItem={props.addItem} curitems={props.curitems}/> : null}
+        <img className='my-auto h-[18vh] rounded-l-[10px]' src={props.item.img}></img>
+        <div className='m-auto flex flex-col justify-center text-center'>
+            
+            <p className='mx-auto font-bold'>{props.item.price}$</p>
         </div>
-        <div className='my-auto'>
-            <div onClick={() => props.delitem(props.item)} className='m-1 p-2 border border-black rounded-lg hover:bg-gray-800 transition-all'><IoMdClose /></div>
-            <div onClick={() => info()} className='m-1 p-2 border border-black rounded-lg hover:bg-gray-800 transition-all'><AiOutlineInfo /></div>
+        <div className='my-auto mr-2'>
+            <div onClick={() => props.delitem(props.item)} className='m-1 p-3 border border-black rounded-lg hover:bg-gray-800 transition-all'><IoMdClose className='scale-[2]'/></div>
+            <div onClick={() => info()} className='m-1 p-3 border border-black rounded-lg hover:bg-gray-800 transition-all'><AiOutlineInfo className='scale-[2]'/></div>
         </div>
     </div>
   )
