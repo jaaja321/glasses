@@ -6,6 +6,7 @@ export class Main extends Component {
     super(props)
     this.state = {
     }
+    this.allCheck = this.allCheck.bind(this)
   }
   render() {
     if (this.props.y) {
@@ -20,13 +21,19 @@ export class Main extends Component {
       return (
         <div id='items' className={`${this.props.open ? 'sm:ml-[12vh]' : 'sm:ml-[12vh]'} ml-[1%] mt-[12vh] mr-[1%] grid grid-cols-2 md:grid-cols-3 sm:grid-cols-2 xl:grid-cols-4 gap-4 justify-between duration-300`}>
           {this.props.allcat.map((el) => (
-            <div onClick={() => this.props.allCheck(el, this.state.curstate, this.state.curcol)} className='border border-gray-500 rounded-lg flex justify-center'>
+            <div onClick={() => this.allCheck(el)} className='border border-gray-500 rounded-lg flex justify-center'>
               <p className='font-bold p-2 my-auto'>{el}</p>
             </div>
           ))}
         </div>
       )
     }
+  }
+
+  allCheck(el){
+    let arr = this.props.fil
+    arr[0] = el
+    this.props.allCheck(arr)
   }
 
   setCat(cat){

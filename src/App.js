@@ -58,7 +58,7 @@ export class App extends Component {
       <div className='text-red-400'>
         <Header setOpen={this.setOpen} delitem={this.delitem} open={this.state.open} curitems={this.state.curitems} search={this.search} curstate={this.state.curstate} curcat={this.state.curcat} addItem={this.addItem}/>
         <Nav fil={this.state.fil} allcat={this.state.allcat} colors={this.state.colors} allCheck={this.allCheck} curcol={this.state.curcol} colCheck={this.colCheck} setOpen={this.setOpen} open={this.state.open} itemsCat={this.state.itemsCat} items={this.state.items} categories={this.state.categories}/>
-        <Main allCheck={this.allCheck} y={this.state.y} setCat={this.setCat} allcat={this.state.allcat} colors={this.state.colors} curcol={this.state.curcol} curitems={this.state.curitems} curcat={this.state.curcat} open={this.state.open} addItem={this.addItem} items = {this.state.items} search={this.state.search}/>
+        <Main fil={this.state.fil} allCheck={this.allCheck} y={this.state.y} setCat={this.setCat} allcat={this.state.allcat} colors={this.state.colors} curcol={this.state.curcol} curitems={this.state.curitems} curcat={this.state.curcat} open={this.state.open} addItem={this.addItem} items = {this.state.items} search={this.state.search}/>
       </div>
     )
   }
@@ -69,24 +69,37 @@ export class App extends Component {
     this.allCheck(cat, this.state.curstate, this.state.curcol)
   }
 
-  allCheck(cat, state, col) {
+  allCheck(arr) {
+    this.setState({fil: arr})
     this.setState({y: true})
+    let colors = []
     let result = this.state.itemsAll
-    this.setState({curcat: cat})
-    this.setState({curstate: state})
-    if (cat === 'allC'){
-      result = this.state.itemsAll
-    } else {
-      result = this.state.itemsAll.filter(el => (
-        el.cat === cat
+    this.setState({curcat: arr[0]})
+
+    if (arr[0]){
+      result = result.filter(el => (
+        el.cat === arr[0]
       ))
-      this.state.itemsAll.forEach(el => (console.log(el.cat)))
       console.log(result)
     }
 
-
+    result.forEach(el => {
+      if (!colors.includes(el.col) && el.col){
+        colors.push(el.col)
+      }
+    })
+    this.setState({colors: colors})
+    console.log(colors)
+    if (arr[2]){
+      result = result.filter(el => (
+        el.col === arr[2]
+      ))
+      
+    }
+    console.log(this.state.fil)
     this.setState({items: result})
     this.setState({itemsCat: result})
+    window.scrollTo(0,0)
   }
 
   search(text){

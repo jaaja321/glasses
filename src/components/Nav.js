@@ -38,6 +38,7 @@ export class Nav extends Component {
     }
     this.stateCheck = this.stateCheck.bind(this)
     this.catCheck = this.catCheck.bind(this)
+    this.fil = this.fil.bind(this)
   }
 
   stateCheck(state){
@@ -67,7 +68,11 @@ export class Nav extends Component {
   }
   
   fil(i,n){
-    
+    let arr = this.props.fil
+    arr[n] = i
+    console.log(arr)
+    this.setState({fil: arr})
+    this.props.allCheck(arr)
   }
 
   render() {
@@ -87,7 +92,7 @@ export class Nav extends Component {
         </div>
         {this.props.allcat.map((el) => (
                   <div className='mx-2 my-1'>
-                  <div onClick={() => this.catCheck(el)} className={`flex border justify-center duration-100 border-black p-1 ${this.state.curcat === el ? "bg-gray-700" : ""} sm:hover:bg-gray-700`}>
+                  <div onClick={() => this.fil(el,0)} className={`flex border justify-center duration-100 border-black p-1 ${this.state.fil[0] === el ? "bg-gray-700" : ""} sm:hover:bg-gray-700`}>
                     <span className={`font-bold my-auto`}>{el}</span>
                   </div>
                 </div>
@@ -102,7 +107,7 @@ export class Nav extends Component {
         </div>
         {this.props.colors.map((el) => (
                   <div className='mx-2 my-1'>
-                  <div onClick={() => this.setCol(el)} className={`flex border justify-center duration-100 border-black p-1 ${this.state.curcat === el ? "bg-gray-700" : ""} sm:hover:bg-gray-700`}>
+                  <div onClick={() => this.fil(el,2)} className={`flex border justify-center duration-100 border-black p-1 ${this.state.fil[2] === el ? "bg-gray-700" : ""} sm:hover:bg-gray-700`}>
                     <span className={`font-bold my-auto`}>{el}</span>
                   </div>
                 </div>
