@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/fig/static/css/main.cdf80176.css",
+    "main.js": "/fig/static/js/main.37027404.js",
+    "index.html": "/fig/index.html",
+    "main.cdf80176.css.map": "/fig/static/css/main.cdf80176.css.map",
+    "main.37027404.js.map": "/fig/static/js/main.37027404.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cdf80176.css",
+    "static/js/main.37027404.js"
+  ]
+}
